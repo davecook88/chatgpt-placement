@@ -1,30 +1,44 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { getDatabase, ref, onValue } from 'firebase/database';
 	import type { ChatHistoryEntry } from '$lib/chat/types';
 	import { ChatCompletionRequestMessageRoleEnum } from 'openai';
 	import type { ActionData } from './$types';
-	import { afterUpdate } from 'svelte';
-	export let data;
+	import { afterUpdate, onMount } from 'svelte';
+	import { database } from '../firebase';
+
 	export let form: ActionData;
+	let chatId: string;
 	let chatWindow: HTMLDivElement;
+	let chatHistory: ChatHistoryEntry[] = [];
 
-	const scrollToBottom = async (node: HTMLDivElement) => {
-		node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
-	};
-
-	// Either afterUpdate()
-	afterUpdate(() => {
-		console.log('afterUpdate');
-		if (data) scrollToBottom(chatWindow);
+	onMount(async () => {
+		chatId = uuidv4();
 	});
 
-	$: if (data && chatWindow) {
+	const db = database;
+
+	const chatRef = ref(db, 'chats/placement-chat');
+	onValue(chatRef, (snapshot) => {
+		const data = snapshot.val();
+		chatHistory = data || [];
+	});
+
+	const scrollToBottom = async (node: HTMLDivElement) => {
+		node?.scroll({ top: node.scrollHeight, behavior: 'smooth' });
+	};
+
+	afterUpdate(() => {
 		scrollToBottom(chatWindow);
-	}
+	});
 
 	let text: string;
 	$: form, console.log(form);
-	$: data, console.log(data);
+	$: chatHistory, console.log(chatHistory);
+
+	function uuidv4(): string {
+		throw new Error('Function not implemented.');
+	}
 </script>
 
 <svelte:head>
@@ -34,7 +48,7 @@
 
 <div class="h-full relative">
 	<div class="p-1 h-5/6 bg-white m-1 overflow-auto" bind:this={chatWindow}>
-		{#each data.chatHistory as { message, role }}
+		{#each Object.entries(chatHistory) as [timestamp, { message, role }]}
 			<div
 				class="w-full flex"
 				class:justify-end={role === ChatCompletionRequestMessageRoleEnum.User}
@@ -45,6 +59,7 @@
 					class="m-1 rounded-sm border border-black w-fit block p-2"
 				>
 					{message}
+					<small class="text-xs">{timestamp}</small>
 				</div>
 			</div>
 		{/each}

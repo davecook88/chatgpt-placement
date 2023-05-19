@@ -4,14 +4,6 @@ import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { ChatBotAction } from './types';
 
-export function load() {
-	console.log('loading');
-	console.log(chat.history);
-	return {
-		chatHistory: chat.history
-	};
-}
-
 export const actions: Actions = {
 	[ChatBotAction.POST_MESSAGE]: async ({ request }) => {
 		const data = await request.formData();
