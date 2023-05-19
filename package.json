@@ -31,7 +31,7 @@
 		"@typescript-eslint/parser": "^5.43.0",
 		"autoprefixer": "^10.4.13",
 		"eslint": "^8.29.0",
-		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"husky": "^8.0.2",
 		"lint-staged": "^13.0.3",

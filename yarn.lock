@@ -2530,7 +2530,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^8.3.0":
+"eslint-config-prettier@npm:^8.8.0":
   version: 8.8.0
   resolution: "eslint-config-prettier@npm:8.8.0"
   peerDependencies:
@@ -5351,7 +5351,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.43.0
     autoprefixer: ^10.4.13
     eslint: ^8.29.0
-    eslint-config-prettier: ^8.3.0
+    eslint-config-prettier: ^8.8.0
     eslint-plugin-svelte3: ^4.0.0
     firebase: ^9.22.0
     husky: ^8.0.2
