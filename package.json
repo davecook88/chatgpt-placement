@@ -48,6 +48,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^3.0.0",
 		"firebase": "^9.22.0",
 		"openai": "^3.2.1",
 		"uuid": "^9.0.0"
