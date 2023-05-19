@@ -3342,7 +3342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^8.0.2":
+"husky@npm:^8.0.3":
   version: 8.0.3
   resolution: "husky@npm:8.0.3"
   bin:
@@ -5547,7 +5547,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-svelte3: ^4.0.0
     firebase: ^9.22.0
-    husky: ^8.0.2
+    husky: ^8.0.3
     lint-staged: ^13.0.3
     openai: ^3.2.1
     postcss: ^8.4.19
